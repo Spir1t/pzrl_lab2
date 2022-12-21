@@ -1,8 +1,11 @@
-#ifndef FUNCS
-#define FUNCS
+#ifndef FUNCS_H
+#define FUNCS_H
 
 
 int get_type(char* type);
+
+
+char*  _strreverse(const char* str1);
 
 
 int bin2int(char* bin);
