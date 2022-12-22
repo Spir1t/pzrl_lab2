@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "funcs.h"
+
 
 int main()
 {
@@ -12,10 +14,16 @@ int main()
 	char* n1 = (char*)calloc(32, sizeof(char));
 	char* n2 = (char*)calloc(32, sizeof(char));
 	char* oper = (char*)calloc(32, sizeof(char));
-	scanf("%s", n1);
 	while(n1[0] != '@')
 	{
-		if(n1[0] == '~')
+		scanf("%s", n1);
+		if(checkBinOctHex(n1) == false)
+		{
+			scanf("%s %s", oper, n2);
+			printf("\terror\n\n");
+			continue;
+		}
+		else if(n1[0] == '~')
 		{
 			memmove(&n1[0], &n1[1], strlen(n1));
 			if(getType(n1) == 2)
@@ -39,13 +47,23 @@ int main()
 				printf("-%s (%d)\n\n", str, ~m1);
 				free(str);
 			}
-			scanf("%s", n1);
 			continue;
 		}
 		scanf("%s %s", oper, n2);
 		if(getType(n1) != getType(n2))
 		{
-			printf("\tОшибка: системы счисления не совпадают\n\n");
+			printf("\terror\n\n");		
+		}
+
+		else if(oper[0] != '+' && oper[0] != '-' && oper[0] != '*' && oper[0] != '/' && oper[0] != '&' && 
+			oper[0] != '|' && oper[0] != '^')
+		{
+			printf("\terror\n\n");
+		}
+
+		else if(checkBinOctHex(n1) == false || checkBinOctHex(n2) == false)
+		{
+			printf("\terror\n\n");	
 		}
 
 		else if(getType(n1) == 2)
@@ -259,10 +277,8 @@ int main()
 
 		else
 		{
-			printf("Некорректный ввод\n");
+			printf("error\n");
 		}
-
-		scanf("%s", n1);
 	}	
 
 	free(n1);

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "funcs.h"
 
 
@@ -182,6 +183,46 @@ char* int2hex(int num)
 	free(hex2);
 	return(hex);
 }
+
+
+bool checkBinOctHex(char* n)
+{
+	int len = strlen(n);
+	if(getType(n) == 16)
+	{
+		for(int i = 2; i < len; i++)
+		{
+			if(((n[i] >= '0' && n[i] <= '9') || (n[i] >= 'a' && n[i] <= 'f') || (n[i] == '~' && i == 0)) == false)
+			{
+				return false;
+			}
+		}
+	}
+	
+	else if(getType(n) == 8)
+	{
+		for(int i = 1; i < len; i++)
+		{
+			if(((n[i] >= '0' && n[i] <= '7') || (n[i] == '~' && i == 0)) == false)
+			{
+				return false;
+			}
+		}
+	}
+	
+	else if(getType(n) == 2)
+	{
+		for(int i = 0; i < len; i++)
+		{
+			if(((n[i] == '0' || n[i] == '1') || (n[i] == '~' && i == 0)) == false)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 
 
 /*

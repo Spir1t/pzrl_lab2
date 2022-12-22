@@ -26,4 +26,7 @@ int hex2int(char* hex);
 char* int2hex(int num);
 
 
+_Bool checkBinOctHex(char* n);
+
+
 #endif
