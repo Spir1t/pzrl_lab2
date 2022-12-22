@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "funcs.h"
 
 
 char *_strreverse(const char *str1)
@@ -9,8 +10,7 @@ char *_strreverse(const char *str1)
 	{
 		return 0;
 	}
-	int len = strlen(str1);
-	char *str2 = (char*)calloc(len, sizeof(char));
+	char *str2 = (char*)calloc(32, sizeof(char));
 	for(int i = 0; i < len; ++i) //принцип работы очевиден, идем у одного массива с одной стороны, у другого с другой
 	{
 		str2[i] = str1[len - i - 1];
@@ -25,16 +25,21 @@ int bin2int(char* bin)
 	int c = 1;
 	int len = strlen(bin);
 	char* newbin = _strreverse(bin);
+	int sign = 1;
 	for(int i = 0; i < len;	i++)
 	{
 		if(newbin[i] == '1')
 		{
 			num += c;
 		}
+		if(newbin[i] == '-')
+		{
+			sign = -1;
+		}
 		c = c * 2;
 	}
 	free(newbin);
-	return num;
+	return(sign * num);
 }
 
 
@@ -71,16 +76,21 @@ int oct2int(char* oct)
 	int c = 1;
 	int len = strlen(oct);
 	char* newoct = _strreverse(oct);
+	int sign = 1;
 	for(int i = 0; i < len - 1; i++)
 	{
-		if(newoct[i] != '0')
+		if(newoct[i] == '-')
+		{
+			sign = -1;
+		}
+		else if(newoct[i] != '0')
 		{
 			num += (newoct[i] - '0') * c;
 		}
 		c = c * 8;
 	}
 	free(newoct);
-	return num;
+	return(sign * num);
 }
 
 

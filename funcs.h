@@ -2,7 +2,7 @@
 #define FUNCS_H
 
 
-int get_type(char* type);
+int getType(char* type);
 
 
 char*  _strreverse(const char* str1);
