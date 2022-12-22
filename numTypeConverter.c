@@ -10,6 +10,7 @@ char *_strreverse(const char *str1)
 	{
 		return 0;
 	}
+	int len = strlen(str1);
 	char *str2 = (char*)calloc(32, sizeof(char));
 	for(int i = 0; i < len; ++i) //принцип работы очевиден, идем у одного массива с одной стороны, у другого с другой
 	{
@@ -183,8 +184,8 @@ char* int2hex(int num)
 }
 
 
-
-/*int main()
+/*
+int main()
 {
 	printf("\n\tBIN2INT TEST\n\n");
 	char* bin21 = "1011";
