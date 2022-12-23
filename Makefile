@@ -12,7 +12,7 @@ compile: 1 2 3
 3: getType.c
 	gcc -c getType.c
  
-run: test
+run: compile
 	./test
 
 clean:
