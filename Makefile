@@ -1,18 +1,18 @@
 oFiles = main.o numTypeConverter.o getType.o
 
-compile: 1 2 3
+test: main.o numTypeConverter.o getType.o
 	gcc  $(oFiles) -o test
 
-1: main.c
+main.o: main.c
 	gcc -c main.c
 
-2: numTypeConverter.c
+numTypeConverter.o: numTypeConverter.c
 	gcc -c numTypeConverter.c
 
-3: getType.c
+getType.o: getType.c
 	gcc -c getType.c
  
-run: compile
+run:
 	./test
 
 clean:
