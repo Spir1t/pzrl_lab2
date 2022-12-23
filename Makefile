@@ -1,6 +1,6 @@
 oFiles = main.o numTypeConverter.o getType.o
 
-run: 1 2 3
+compile: 1 2 3
 	gcc  $(oFiles) -o test
 
 1: main.c
@@ -12,5 +12,8 @@ run: 1 2 3
 3: getType.c
 	gcc -c getType.c
  
+run: test
+	./test
+
 clean:
 	rm -rf $(oFiles) test
