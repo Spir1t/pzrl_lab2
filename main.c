@@ -7,21 +7,14 @@
 
 int main()
 {
-	printf("\tБИТОВЫЙ КАЛЬКУЛЯТОР\n\tДля выхода из калькулятора введите @\n");
-	printf("\n\tВведите числа и операции\n");
-
-
 	char* n1 = (char*)calloc(32, sizeof(char));
 	char* n2 = (char*)calloc(32, sizeof(char));
 	char* oper = (char*)calloc(32, sizeof(char));
-	while(n1[0] != '@')
-	{
 		scanf("%s", n1);
 		if(checkBinOctHex(n1) == false)
 		{
-			scanf("%s %s", oper, n2);
-			printf("\terror\n\n");
-			continue;
+			printf("error\n");
+			return 0;
 		}
 		else if(n1[0] == '~')
 		{
@@ -47,23 +40,23 @@ int main()
 				printf("-%s (%d)\n\n", str, ~m1);
 				free(str);
 			}
-			continue;
+			return 0;
 		}
 		scanf("%s %s", oper, n2);
 		if(getType(n1) != getType(n2))
 		{
-			printf("\terror\n\n");		
+			printf("error\n");
 		}
 
 		else if(oper[0] != '+' && oper[0] != '-' && oper[0] != '*' && oper[0] != '/' && oper[0] != '&' && 
 			oper[0] != '|' && oper[0] != '^')
 		{
-			printf("\terror\n\n");
+			printf("error\n");
 		}
 
 		else if(checkBinOctHex(n1) == false || checkBinOctHex(n2) == false)
 		{
-			printf("\terror\n\n");	
+			printf("error\n");	
 		}
 
 		else if(getType(n1) == 2)
@@ -278,8 +271,7 @@ int main()
 		else
 		{
 			printf("error\n");
-		}
-	}	
+		}	
 
 	free(n1);
 	free(n2);
